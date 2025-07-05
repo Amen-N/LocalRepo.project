@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    /* To-Do List styles */
+    #todo-input {
+      width: 70%;
+      padding: 8px;
+      margin-right: 10px;
+    }
+    #todo-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    button {
+      padding: 5px 10px;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>My Portfolio</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section>
+      <h2>Welcome</h2>
+      <p>This is my professional portfolio showcasing my projects and skills.</p>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <p>List of projects will go here with links and descriptions.</p>
+    </section>
+
+    <section>
+      <h2>To-Do List</h2>
+      <input type="text" id="todo-input" placeholder="Enter a task" />
+      <button onclick="addTask()">Add Task</button>
+      <ul id="todo-list"></ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Advanced To-Do List functionality
+    function addTask() {
+      const input = document.getElementById('todo-input');
+      const taskText = input.value.trim();
+      if (taskText !== "") {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${taskText}</span>
+          <div>
+            <button onclick="completeTask(this)">Complete</button>
+            <button onclick="deleteTask(this)">Delete</button>
+          </div>
+        `;
+        document.getElementById('todo-list').appendChild(li);
+        input.value = "";
+      }
+    }
+
+    function completeTask(btn) {
+      const span = btn.parentElement.parentElement.querySelector('span');
+      span.classList.toggle('completed');
+    }
+
+    function deleteTask(btn) {
+      const li = btn.parentElement.parentElement;
+      li.remove();
+    }
+  </script>
+
+</body>
+</html>
